@@ -6,7 +6,12 @@ const Header = () => {
   return (
                 
         <>
-        <h3>Header</h3>
+        <div className='d-sm-flex justify-content-between align-items-center'>
+                <div>
+                    <h4>Header Section</h4>
+                    <p>Templates / Header</p>
+                </div>
+            </div>
         </>
   );
 };

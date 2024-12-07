@@ -28,7 +28,7 @@ const NavRight = () => {
     <div className='mx-5'>
       <Dropdown align={'end'} className="drp-user">
         <Dropdown.Toggle as={Link} variant="link" to="#" id="dropdown-basic">
-          <i className="feather icon-user fs-6 rounded-circle p-2" style={{ background: "#9B8FD4" }} />
+          <i className="feather icon-user fs-6 rounded-circle p-2 text-white" style={{ background: "#3F4D67" }} />
         </Dropdown.Toggle>
         <Dropdown.Menu align="end" className="profile-notification">
           <ListGroup as="ul" bsPrefix=" " variant="flush" className="pro-body">

@@ -1,4 +1,4 @@
-import { faHeading, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faBoxArchive, faHeading, faHome, faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 
 const menuItems = {
   items: [
@@ -28,6 +28,28 @@ const menuItems = {
           type: 'item',
           icon: faHeading,
           url: '/header-section'
+        },
+        {
+          id: 'about-us',
+          title: 'About-Us',
+          type: 'item',
+          icon: faPeopleGroup,
+          url: '/about-us'
+        }
+      ]
+    },
+    {
+      id: 'setting',
+      title: 'Setting',
+      type: 'group',
+      icon: 'icon-navigation',
+      children: [
+        {
+          id: 'archive',
+          title: 'Archive',
+          type: 'item',
+          icon: faBoxArchive,
+          url: '/archive'
         }
       ]
     },

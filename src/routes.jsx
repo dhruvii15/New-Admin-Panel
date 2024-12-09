@@ -12,6 +12,7 @@ import Dashboard from './views/dashboard';
 import Header from 'views/Header';
 import ForgotPass from 'views/Forgot-pass';
 import User from 'views/User';
+import Archive from 'views/Archive';
 
 // ==============================|| ROUTES ||============================== //
 
@@ -66,11 +67,16 @@ export const routes = [
         exact: true,
         path: '/header-section',
         element: () => <AdminProtect><Header /></AdminProtect>
-      },,
+      },
       {
         exact: true,
         path: '/user',
         element: () => <AdminProtect><User /></AdminProtect>
+      },
+      {
+        exact: true,
+        path: '/archive',
+        element: () => <AdminProtect><Archive /></AdminProtect>
       },
       {
         path: '*',

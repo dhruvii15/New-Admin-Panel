@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { toast } from 'react-toastify'; // Ensure you have react-toastify imported
+import { toast } from 'react-toastify';
 
-const Card = ({ data, getData }) => { // Added getData prop to allow refreshing data
+const Card = ({ data, getData }) => {
     const [dropdownVisibleIndex, setDropdownVisibleIndex] = useState(null);
     const dropdownRefs = useRef([]);
 
@@ -57,6 +57,33 @@ const Card = ({ data, getData }) => { // Added getData prop to allow refreshing 
                     toast.error(err.response?.data?.message || 'Error deleting template');
                 });
         }
+        setDropdownVisibleIndex(null);
+    };
+
+    const handleArchive = (template) => {
+        const email = localStorage.getItem("email");
+
+        // Create a FormData object
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("Archive", !template.Archive);
+
+        if (window.confirm("Are you sure you want to move this template?")) {
+            axios.patch(`http://localhost:5000/api/templates/update/${template._id}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+                .then((res) => {
+                    getData();
+                    toast.success("Template archived successfully");
+                })
+                .catch((err) => {
+                    console.error(err);
+                    toast.error(err.response?.data?.message || 'Error archiving template');
+                });
+        }
+        setDropdownVisibleIndex(null);
     };
 
     return (
@@ -92,8 +119,8 @@ const Card = ({ data, getData }) => { // Added getData prop to allow refreshing 
                                     </div>
                                 </div>
                                 <div className='d-flex align-items-center justify-content-between position-relative'>
-                                    <button 
-                                        className="tem-name pt-3 text-black fs-6 m-0 text-decoration-underline bg-transparent border-0" 
+                                    <button
+                                        className="tem-name pt-3 text-black fs-6 m-0 text-decoration-underline bg-transparent border-0"
                                         onClick={() => window.open(templates.Thumbnail, "_blank")}
                                     >
                                         {templates.Name.charAt(0).toUpperCase() + templates.Name.slice(1)}
@@ -134,15 +161,16 @@ const Card = ({ data, getData }) => { // Added getData prop to allow refreshing 
                                             </p>
                                             <p
                                                 className="tem-name dropdown-item text-black m-0 py-1 px-3"
-                                                onClick={() => handleOptionClick('Archive', templates)}
+                                                onClick={() => handleArchive(templates)}
                                                 style={{ cursor: 'pointer' }}
                                             >
-                                                Archive
+                                                {templates.Archive ? 'Restore' : 'Archive'}
                                             </p>
+
                                         </div>
                                     )}
                                 </div>
-                                <p className="pt-3">
+                                <p className="pt-3 ps-2">
                                     {templates.Description.charAt(0).toUpperCase() + templates.Description.slice(1)}
                                 </p>
                             </div>

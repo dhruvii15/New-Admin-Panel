@@ -7,6 +7,7 @@ const AdminProtect = ({ children }) => {
 
   useEffect(() => {
     const adminToken = localStorage.getItem("adminToken");
+    
     if (!adminToken) {
       navigate('/login');
     } else {

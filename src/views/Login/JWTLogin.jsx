@@ -45,6 +45,7 @@ const JWTLogin = () => {
             });
             const { token } = emailResponse.data;
             localStorage.setItem('adminToken', token);
+            localStorage.setItem('email', userDetails.email);
             navigate('/dashboard');
         } catch (error) {
             console.error('Error while sending password email:', error);
@@ -77,6 +78,7 @@ const JWTLogin = () => {
 
                         const { token } = response.data;
                         localStorage.setItem('adminToken', token);
+                        localStorage.setItem('email', values.email);
                         navigate('/dashboard');
                     } catch (error) {
                         console.error(error);

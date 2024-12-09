@@ -383,7 +383,7 @@ const Header = () => {
       </Modal>
 
 
-      <Card data={filteredData} />
+      <Card data={filteredData} getData={getData}/>
 
       <ToastContainer />
     </div>

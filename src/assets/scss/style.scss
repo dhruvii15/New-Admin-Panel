@@ -92,3 +92,12 @@ File: style.css
 .template-container .hover-overlay button {
   margin: 0 10px;
 }
+
+.tem-name {
+  transition: transform 0.2s ease, color 0.2s ease; /* Smooth transition for scaling and color */
+}
+
+.tem-name:hover {
+    color: #3F4D67 !important;
+    transform: scale(1.05);
+}

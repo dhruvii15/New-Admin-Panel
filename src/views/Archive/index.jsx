@@ -46,6 +46,8 @@ const Archive = () => {
             // Search in Name
             template.Name.toLowerCase().includes(lowercasedTerm) ||
 
+            template.Category.toLowerCase().includes(lowercasedTerm) ||
+
             // Search in Tags
             (template.Tags && template.Tags.some(tag =>
                 tag.toLowerCase().includes(lowercasedTerm))) ||

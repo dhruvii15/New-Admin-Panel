@@ -57,7 +57,6 @@ const Card = ({ data, getData }) => {
                     toast.error(err.response?.data?.message || 'Error deleting template');
                 });
         }
-        setDropdownVisibleIndex(null);
     };
 
     const handleArchive = (template) => {
@@ -83,7 +82,6 @@ const Card = ({ data, getData }) => {
                     toast.error(err.response?.data?.message || 'Error archiving template');
                 });
         }
-        setDropdownVisibleIndex(null);
     };
 
     return (

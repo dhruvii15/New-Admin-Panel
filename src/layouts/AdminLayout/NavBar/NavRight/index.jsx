@@ -11,22 +11,32 @@ import { Link } from 'react-router-dom';
 
 const NavRight = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
     navigate('/');
+    setIsOpen(false); 
   };
 
   const handleClick = () => {
     navigate('/forgot-pass');
+    setIsOpen(false); 
   };
 
   const handleInviteClick = () => {
     navigate('/user');
+    setIsOpen(false); 
   };
+
   return (
     <div className='mx-5'>
-      <Dropdown align={'end'} className="drp-user">
+      <Dropdown
+        align={'end'}
+        className="drp-user"
+        show={isOpen} 
+        onToggle={() => setIsOpen(!isOpen)}  
+      >
         <Dropdown.Toggle as={Link} variant="link" to="#" id="dropdown-basic">
           <i className="feather icon-user fs-6 rounded-circle p-2 text-white" style={{ background: "#3F4D67" }} />
         </Dropdown.Toggle>
@@ -54,7 +64,6 @@ const NavRight = () => {
         </Dropdown.Menu>
       </Dropdown>
     </div>
-
   );
 };
 

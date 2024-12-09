@@ -12,6 +12,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'; // Import
 const ForgotPass = () => {
     const [showpass, setShowpass] = useState(false); // State to toggle pass visibility
     const navigate = useNavigate();
+    const email = localStorage.getItem("email");
 
     // Function to toggle pass visibility
     const togglepassVisibility = () => {
@@ -33,7 +34,7 @@ const ForgotPass = () => {
                             <img src={logoDark} alt="" className="img-fluid mb-4" />
                             <Formik
                                 initialValues={{
-                                    email: '',
+                                    email: email,
                                     pass: '',
                                     confirmpass: '',
                                     submit: null

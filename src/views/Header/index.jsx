@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Card from 'components/Card';
 
 const Header = () => {
   const [visible, setVisible] = useState(false);
@@ -156,13 +157,13 @@ const Header = () => {
 
       <div className='d-flex justify-content-between align-items-center my-3'>
         {/* Search Input */}
-        <InputGroup className="border rounded-2" style={{width:"35%"}}>
+        <InputGroup className="border rounded-2" style={{ width: "35%" }}>
           <Form.Control
             type="text"
             placeholder="Search by Name, Tags, or Language"
             value={searchTerm}
             onChange={(e) => handleSearch(e.target.value)}
-            className='border-0 no-focus' 
+            className='border-0 no-focus'
           />
           <InputGroup.Text className='border-0'>
             <FontAwesomeIcon icon={faSearch} />
@@ -192,7 +193,7 @@ const Header = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
-            
+
 
             {/* CodeZip Upload */}
             <Form.Group className="mb-3">
@@ -230,7 +231,7 @@ const Header = () => {
                 </div>
               )}
             </Form.Group>
-            
+
             {/* Thumbnail Upload */}
             <Form.Group className="mb-3">
               <Form.Label className='fw-bold text-black'>{thumbnailFileLabel}
@@ -371,7 +372,7 @@ const Header = () => {
                   type="submit"
                   className='submit border-0 rounded-3 w-100'
                   disabled={isSubmitting}
-                  style={{background : "#3F4D67"}}
+                  style={{ background: "#3F4D67" }}
                 >
                   {isSubmitting ? <Spinner size='sm' /> : 'Submit'}
                 </Button>
@@ -382,32 +383,7 @@ const Header = () => {
       </Modal>
 
 
-      <Table striped bordered hover responsive className='text-center fs-6'>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Tags</th>
-            <th>Language</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData && filteredData.length > 0 ? (
-            filteredData.map((templates, index) => (
-              <tr key={templates._id}>
-                <td>{index + 1}</td>
-                <td>{templates.Name}</td>
-                <td>{templates.Tags?.filter(Boolean).slice(0, 7).join(', ') || 'No Tags'}</td>
-                <td>{templates.Language?.filter(Boolean).slice(0, 7).join(', ') || 'No Language'}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={4} className="text-center">No Data Found</td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
+      <Card data={filteredData} />
 
       <ToastContainer />
     </div>
